@@ -1,0 +1,36 @@
+/* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
+package cn.zhuatech.archive.config;
+
+import cn.zhuatech.archive.domain.DomainCatalog;
+import cn.zhuatech.archive.model.*;
+import cn.zhuatech.archive.repository.*;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+@Configuration
+public class DataInitializer {
+    @Bean
+    CommandLineRunner seed(BusinessRecordRepository records, SystemSettingRepository settings, DomainCatalog catalog) {
+        return args -> {
+            if (records.count() > 0) return;
+        settings.save(new SystemSetting("retentionPolicy", "按档案分类表执行"));
+        settings.save(new SystemSetting("checksumAlgorithm", "SHA-256"));
+        settings.save(new SystemSetting("borrowDefaultDays", "15"));
+        settings.save(new SystemSetting("destructionApproval", "双人复核"));
+            int sequence = 1;
+            for (var module : catalog.modules()) {
+                String no = "ARC-DEMO-" + String.format("%03d", sequence);
+                records.save(new BusinessRecord(
+                    no, module.code(), module.name() + "标准业务事项", "上海总部",
+                    sequence % 3 == 0 ? "内控经理" : "业务专员", catalog.initialStatus(),
+                    BigDecimal.valueOf(sequence * 12500L), sequence * 2,
+                    LocalDate.now().plusDays(sequence * 3L), sequence % 4 == 0 ? "关注" : "正常",
+                    module.description() + "；用于演示完整台账、状态流、权限和审计能力"));
+                sequence++;
+            }
+        };
+    }
+}
+
