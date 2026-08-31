@@ -1,5 +1,9 @@
 # ZhuaTech Archive｜知华科技企业电子档案系统
 
+## 企业级档案处置治理
+
+新增保管期限、法律保全、审计冻结、责任部门审批和销毁证据检查，详见 [档案处置治理](docs/ENTERPRISE_RECORD_DISPOSITION.md)。
+
 > 让每一份企业档案可归集、可利用、可保全、可审计
 
 [![Java 21](https://img.shields.io/badge/Java-21-66578f)](backend/pom.xml)
