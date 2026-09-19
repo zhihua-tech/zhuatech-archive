@@ -2,14 +2,23 @@
 package cn.zhuatech.archive.service;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 class RecordDispositionGovernanceServiceTest {
     private final RecordDispositionGovernanceService service = new RecordDispositionGovernanceService();
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test void allowsDispositionWhenAllControlsPass() {
         var result = service.evaluate(new RecordDispositionGovernanceService.Request(
                 "ARC-001", true, false, false, true, true, true));
         assertEquals("DISPOSE", result.decision());
         assertTrue(result.dispositionAllowed());
     }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test void retainsRecordUnderLegalHold() {
         var result = service.evaluate(new RecordDispositionGovernanceService.Request(
                 "ARC-002", true, true, false, true, true, true));

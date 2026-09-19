@@ -4,8 +4,14 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class RecordDispositionGovernanceService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Result evaluate(Request request) {
         List<String> blockers = new ArrayList<>();
         if (!request.retentionExpired()) blockers.add("保管期限尚未届满");
@@ -19,12 +25,21 @@ public class RecordDispositionGovernanceService {
         return new Result(request.recordId(), decision, blockers.isEmpty(),
                 List.copyOf(blockers), List.of("RETENTION", "LEGAL_HOLD", "OWNER_APPROVAL", "EVIDENCE"));
     }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String recordId, boolean retentionExpired,
                           boolean legalHoldActive, boolean auditFreezeActive,
                           boolean ownerApproved, boolean evidencePackageComplete,
                           boolean duplicateValidated) {
+        /**
+         * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+         */
         public Request { if (recordId == null || recordId.isBlank()) throw new IllegalArgumentException("recordId is required"); }
     }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Result(String recordId, String decision, boolean dispositionAllowed,
                          List<String> blockers, List<String> controlsChecked) {}
 }
