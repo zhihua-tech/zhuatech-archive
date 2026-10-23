@@ -1,0 +1,47 @@
+[
+  {
+    "patch": {},
+    "expected": {
+      "decision": "PASS",
+      "retentionEnd": "2025-10-01",
+      "disposalCandidate": "true"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "legalHold": "YES"
+    },
+    "expected": {
+      "decision": "HOLD",
+      "disposalCandidate": "false"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "appraisal": "PENDING"
+    },
+    "expected": {
+      "decision": "REVIEW"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "closedDate": "2025-10-01"
+    },
+    "expected": {
+      "decision": "PASS",
+      "disposalCandidate": "false"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "closedDate": "2026-10-24"
+    },
+    "expected": {},
+    "error": true
+  }
+]
